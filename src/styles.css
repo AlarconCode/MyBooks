@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    --primary-color: #C9EDDC;
+    --secondary-color: #89B6A5;
+    --dark-green: #506E5F;
+    --link-color: #4C3B4D;
+    font-size: 1rem;
+}
+
+header {
+    background-color: var(--secondary-color);
+    height: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    width: 25%;
+    font-size: 1.5rem;
+    color: var(--primary-color)
+
+}
+
+.menu {
+    display: flex;
+    justify-content: end;
+    width: 75%;
+}
+
+.item-menu {
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: var(--dark-green);
+}
