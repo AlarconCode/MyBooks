@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
-  {path:"home", component: RegisterComponent},
+  {path:"", component: RegisterComponent},
   {path:"registro", component: RegisterComponent}
 ];
 
