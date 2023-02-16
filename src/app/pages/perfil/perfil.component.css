@@ -1,0 +1,93 @@
+.container {
+    margin: auto;
+    max-width: 60vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.left {
+    padding: 20px;
+    width: 50%;
+    height: 100%;
+}
+
+.right {
+    padding: 20px;
+    width: 50%;
+    height: 100%;
+}
+
+.card {
+    background-color: var(--light-green);
+    border: 2px solid var(--dark-green);
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+input {
+    width: 250px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid var(--dark-green);
+}
+
+.group label {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    color: var(--dark-green);
+}
+
+input:focus {
+    outline: none;
+    color: var(--dark-green);
+}
+
+.edit {
+    width: 80%;
+}
+
+.image-perfil {
+    background-color: var(--link-color);
+    width: 200px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+img {
+    position: relative;
+    right: 5px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--link-color);
+}
+
+h1 {
+    color: var(--dark-green);
+    margin-bottom: 40px;
+}
+
+input {
+    padding: 10px;
+}
+
+button {
+    border: none;
+    display: block;
+    width: 80%;
+    height: 40px;
+    color: var(--light-green);
+    background-color: var(--link-color);
+    cursor: pointer;
+}

@@ -1,0 +1,57 @@
+<div class="container">
+
+    <div class="left">
+
+        <div class="card">
+
+            <div class="image-perfil">
+                <img src="../../../assets/img/Imagen-de-perfil.jpg" alt="imagen de perfil">
+            </div>
+            <h1 class="name-complete">{{myUser.nameComplete()}}</h1>
+            <div class="group">
+                <label for="name">Nombre</label>
+                <input type="text" name="name" id="name" [value]="myUser.name">
+            </div>
+            <div class="group">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" name="apellidos" id="apellidos" value="{{myUser.surname}}">
+            </div>
+            <div class="group">
+                <label for="email">email</label>
+                <input type="email" name="email" id="email" value="{{myUser.email}}">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="card">
+
+            <h1 class="title">Editar datos</h1>
+            
+            <input type="text" name="name" id="name" placeholder="Nombre" class="edit" #newData1>
+            
+            <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="edit" #newData2>
+            
+            <input type="email" name="email" id="email" placeholder="email" class="edit" #newData3>
+            
+            <input type="url" name="url" id="url" placeholder="Url" class="edit" #newData4>
+
+            <!-- <input type="text" name="name" id="name" placeholder="Nombre" class="edit" [(ngModel)]="myUser.name">
+            
+            <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="edit" [(ngModel)]="myUser.surname">
+            
+            <input type="email" name="email" id="email" placeholder="email" class="edit" [(ngModel)]="myUser.email">
+            
+            <input type="url" name="url" id="url" placeholder="Url" class="edit" [(ngModel)]="myUser.url"> -->
+
+            <!-- <button (click)=showName() class="modificar">Modificar</button> -->
+            <button (click)=changeData(newData1,newData2,newData3,newData4) class="modificar">Modificar</button>
+
+        </div>
+
+    </div>
+
+</div>

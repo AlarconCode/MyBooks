@@ -7,6 +7,8 @@ import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { RegistrationFormComponent } from './component/registration-form/registration-form.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { RegisterComponent } from './pages/register/register.component';
     HeaderComponent,
     FooterComponent,
     RegistrationFormComponent,
-    RegisterComponent
+    RegisterComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
