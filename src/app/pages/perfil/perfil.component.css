@@ -91,3 +91,18 @@ button {
     background-color: var(--link-color);
     cursor: pointer;
 }
+
+.noShow {
+    display: none;
+}
+
+.showGreen {
+    display: block;
+    color: green;
+}
+
+.showRed {
+    display: block;
+    color: red;
+    text-align: center;
+}
