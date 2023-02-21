@@ -1,0 +1,43 @@
+<div class="wrapper">
+
+    <div class="formAddBook">
+        <h1>Añadir Libro</h1>
+        <form>
+            <input type="number" id="id_book" value="" placeholder="codigo" #id_book>
+            <input type="text" id="title" value="" placeholder="titulo" #title>
+            <input type="text" id="autor" value="" placeholder="autor" #author>
+            <input type="text" id="description" value="" placeholder="descripción" #description>
+            <input type="text" id="price" value="" placeholder="precio" #price>
+            <input type="text" id="photo" value="" placeholder="foto" #photo>
+            <button (click)=addNewBook(id_book,title,author,description,price,photo)>Añadir</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <ng-container *ngFor="let book of arrayBooks">
+
+            <div class="card-book">
+                
+                <div class="image">
+                    <img src="{{book.photo}}" alt="">
+                </div>
+                <div class="data-card">
+                    <h1 class="title">{{book.title}}</h1>
+                    <p class="author"><strong>Autor:</strong> {{book.author}}</p>
+                    <p class="description">{{book.description}}</p>
+                    <p class="price"><strong>Precio:</strong> {{book.price}}€</p>
+                    <p class="id_book"><strong>sku:</strong> {{book.id_book}}</p>
+                    <button class="buy">Comprar</button>
+                </div>
+                
+            </div>
+            
+        </ng-container>
+        <ng-container *ngIf="arrayBooks.length === 0" class="empty">
+    
+            <h1>No se encontraron resultados</h1>
+    
+        </ng-container>
+    </div>
+
+</div>
