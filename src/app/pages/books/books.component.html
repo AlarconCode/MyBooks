@@ -1,9 +1,13 @@
 <div class="wrapper">
 
     <div class="formAddBook">
+        <div class="search">
+            <input type="search" placeholder="Buscar por id del Libro" #Id>
+            <button (click)=searchById(Id)>Buscar</button>
+        </div>
         <h1>Añadir Libro</h1>
         <form>
-            <input type="number" id="id_book" value="" placeholder="codigo" #id_book>
+            <input type="number" id="id_book" value="" placeholder="código" #id_book>
             <input type="text" id="title" value="" placeholder="titulo" #title>
             <input type="text" id="autor" value="" placeholder="autor" #author>
             <input type="text" id="description" value="" placeholder="descripción" #description>
@@ -14,10 +18,12 @@
     </div>
 
     <div class="container">
-        <ng-container *ngFor="let book of arrayBooks">
+        <ng-container *ngFor="let book of BooksService.Books">
 
             <div class="card-book">
-                
+                <div class="containerClose">
+                    <span (click)=deleteCard(book.id_book) class="close">x</span>
+                </div>
                 <div class="image">
                     <img src="{{book.photo}}" alt="">
                 </div>
@@ -33,7 +39,7 @@
             </div>
             
         </ng-container>
-        <ng-container *ngIf="arrayBooks.length === 0" class="empty">
+        <ng-container *ngIf="BooksService.Books.length === 0" class="empty">
     
             <h1>No se encontraron resultados</h1>
     
