@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { mergeMap, Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/usuario';
+import { BookServiceService } from 'src/app/shared/book-service.service';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -10,12 +13,11 @@ import { UserService } from 'src/app/shared/user.service';
 export class LoginFormComponent {
 
   public user:Usuario
-  constructor(private userService:UserService) {}
+  constructor(public userService:UserService, public router:Router) {}
   
-  public userLogin(email:string) {
-    console.log(email);
+  public userLogin(email:string, password:string) {
     
-    this.userService.login(new Usuario(0, '', '', email, ''))
+    this.userService.login(new Usuario(0, '', '', email, '', password))
     .subscribe((data:any) => {
       
       if (data.result == 'Los datos no existen') {
@@ -25,11 +27,12 @@ export class LoginFormComponent {
       } else {
 
         this.userService.logging = true
-        this.user = data.result[0]      
-
-      }   
+        this.user = data.result[0]       
+        this.userService.setUserLogging(this.user)                    
+        this.router.navigateByUrl('/books')
+     
+      }
       
-
     })
 
   }

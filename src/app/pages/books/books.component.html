@@ -2,23 +2,22 @@
 
     <div class="formAddBook">
         <div class="search">
-            <input type="search" placeholder="Buscar por id del Libro" #Id>
-            <button (click)=searchById(Id)>Buscar</button>
+            <input type="search" placeholder="Buscar por id del Libro" #id_book>
+            <button (click)=searchById(id_book.value)>Buscar</button>
         </div>
         <h1>Añadir Libro</h1>
         <form>
-            <input type="number" id="id_book" value="" placeholder="código" #id_book>
             <input type="text" id="title" value="" placeholder="titulo" #title>
             <input type="text" id="autor" value="" placeholder="autor" #author>
-            <input type="text" id="description" value="" placeholder="descripción" #description>
             <input type="text" id="price" value="" placeholder="precio" #price>
             <input type="text" id="photo" value="" placeholder="foto" #photo>
-            <button (click)=addNewBook(id_book,title,author,description,price,photo)>Añadir</button>
+            <button (click)=addNewBook(title.value,author.value,price.value,photo.value)>Añadir</button>
         </form>
     </div>
 
-    <div class="container">
-        <ng-container *ngFor="let book of BooksService.Books">
+    <div *ngIf= "arrayBooks.length > 0" class="container">
+        
+        <ng-container *ngFor="let book of arrayBooks">
 
             <div class="card-book">
                 <div class="containerClose">
@@ -39,11 +38,14 @@
             </div>
             
         </ng-container>
-        <ng-container *ngIf="BooksService.Books.length === 0" class="empty">
+        
     
-            <h1>No se encontraron resultados</h1>
+    </div>
     
-        </ng-container>
+    <div *ngIf="arrayBooks.length === 0" class="empty" class="container">
+        
+        <h1>No se encontraron resultados</h1>
+
     </div>
 
 </div>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Book } from 'src/app/models/book';
 import { BookServiceService } from 'src/app/shared/book-service.service';
+import { UserService } from 'src/app/shared/user.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-books',
@@ -14,74 +16,60 @@ export class BooksComponent {
   public arrayBooks:Book[]
   
 
-  constructor (public BooksService: BookServiceService) {
+  constructor (public BooksService: BookServiceService, private userService:UserService) {
 
-    this.anyBook = new Book()    
-
-    this.arrayBooks = this.generateArrayBooks(100)
-
-    this.BooksService.Books = this.generateArrayBooksService(100)
+   this.arrayBooks = []
+   this.showBooksUserLogging()
 
   }
 
-  generateArrayBooks(count:number):Book[] {
-    let newArr:Book[] = []
-    let i:number = 0
-    while (i < count) {
-      newArr.push(new Book())
-      i++
-    }
+  showBooksUserLogging() {
 
-    return newArr
+    this.BooksService.getBookByUser()
+    .subscribe((res:any) => {
+      this.arrayBooks = res.result      
+    })
 
   }
 
-  addNewBook(id_book:HTMLInputElement, title:HTMLInputElement, author:HTMLInputElement, description:HTMLInputElement, price:HTMLInputElement, photo:HTMLInputElement) 
+  addNewBook(title:string, author:string, price:string, photo:string) 
   {
     
-    let newBook:Book = {
-      id_book: parseInt(id_book.value),
-      title: title.value,
-      author: author.value,
-      description: description.value,
-      price: price.value,
-      photo: photo.value
-    }
 
-    this.arrayBooks.unshift(newBook)
 
-  }
-
-  // Usando un service
-
-  generateArrayBooksService(count:number):Book[] {
-    let newArr:Book[] = []
-    let i:number = 0
-    while (i < count) {
-      newArr.push(new Book())
-      i++
-    }
-
-    return newArr
+    this.BooksService.addNewBookToUser(new Book(0,this.userService.getIdUserLogging(),title, author, price, photo))
+    .subscribe(
+      (res:any) => {
+        console.log(res);
+        
+        Swal.fire(`El libro ${title} ha sido guardado con id ${res.result.insertId}`)
+      }
+    )
 
   }
 
-  searchById(searchById:HTMLInputElement) {
-    console.log(searchById.value);
-    
-    if (searchById.value === '') {
-      this.BooksService.Books = this.arrayBooks
-    } else {
-      let found = this.BooksService.Books.filter(book => book.id_book === parseInt(searchById.value))
-      this.BooksService.Books = found
-      return found
-    }
-    
+  searchById(id_book:number) {
+        
+    this.BooksService.getBookDataByIdUser(id_book)
+    .subscribe(
+      (res:any) => {
+        this.arrayBooks = res.result
+      }
+    )
+
   }
 
-  deleteCard(id_book) {
+  deleteCard(id_book:number) {
     if (confirm('¿Esta seguro de eliminarlo?')) {
-      this.BooksService.delete(id_book)
+      this.BooksService.deleteBook(id_book)
+      .subscribe(
+        (res:any) => {
+          console.log(res);
+          
+          Swal.fire(`El libro con id ${id_book} ha sido eliminado con éxito`)
+        }
+        
+      )
     }
   }
 

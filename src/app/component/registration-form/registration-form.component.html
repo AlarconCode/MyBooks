@@ -15,11 +15,15 @@
                 <label for="">Email</label>
             </div>
             <div class="group">
+                <input type="password" name="" id="email" required #password>
+                <label for="">Password</label>
+            </div>
+            <div class="group">
                 <input type="text" name="" id="urlPhoto" #photo>
                 <label for="">Url de imagen</label>
             </div>
 
-            <button (click)= userRegister(name.value,surname.value,email.value,photo.value) type="submit">Registrarse</button>
+            <button (click)= userRegister(name.value,surname.value,email.value,photo.value,password.value) type="submit">Registrarse</button>
         </div>
     </form>
 </div>

@@ -9,11 +9,13 @@ export class UserService {
 
   private url:string
   public logging:boolean
+  public userLogging:Usuario
 
   constructor(private http:HttpClient) { 
 
     this.url = 'http://localhost:4000'
     this.logging = false
+    this.userLogging = null
 
   }
 
@@ -28,5 +30,23 @@ export class UserService {
     return this.http.post(this.url + '/login', user)
 
   }
+
+  setUserLogging(user:Usuario) {
+    this.userLogging = user 
+  }
+
+  getUserLogging() {
+    return this.userLogging
+  }
+
+  getLogging() {
+    return this.logging
+  }
+
+  getIdUserLogging() {
+    return this.userLogging.id_user
+  }
+
+
 
 }

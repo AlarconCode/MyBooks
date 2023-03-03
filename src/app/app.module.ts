@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { BooksComponent } from './pages/books/books.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LoginFormComponent } from './component/login-form/login-form.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { LoginFormComponent } from './component/login-form/login-form.component'
     PerfilComponent,
     BooksComponent,
     LoginComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

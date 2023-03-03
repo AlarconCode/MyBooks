@@ -13,10 +13,10 @@ export class RegistrationFormComponent {
 
   constructor(private userService: UserService) {}
 
-  userRegister(name:string, surname:string, email:string, photo:string) {
+  userRegister(name:string, surname:string, email:string, photo:string, password:string) {
 
 
-    this.userService.register(new Usuario(0, name, surname, email, photo))
+    this.userService.register(new Usuario(0, name, surname, email, photo, password))
     .subscribe((data:any) => {
 
       console.log(data);
