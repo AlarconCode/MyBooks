@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-* {
+*, ::after, ::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,5 +12,6 @@
     --dark-green: #506E5F;
     --light-green: #dbf2e6;
     --link-color: #4C3B4D;
+    --link-light-color: #4c3b4d23;
     font-size: 1rem;
 }

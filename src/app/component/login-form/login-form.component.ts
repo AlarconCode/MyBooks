@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { mergeMap, Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/usuario';
-import { BookServiceService } from 'src/app/shared/book-service.service';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -13,11 +12,18 @@ import { UserService } from 'src/app/shared/user.service';
 export class LoginFormComponent {
 
   public user:Usuario
-  constructor(public userService:UserService, public router:Router) {}
-  
-  public userLogin(email:string, password:string) {
+  public loginForm:FormGroup
+  constructor(public userService:UserService, public router:Router, private fb:FormBuilder) {
+
+    this.buildForm()
     
-    this.userService.login(new Usuario(0, '', '', email, '', password))
+  }
+  
+  public userLogin() {
+    
+    this.user = this.loginForm.value    
+
+    this.userService.login(new Usuario(0, '', '', this.user.email, '', this.user.password))
     .subscribe((data:any) => {
       
       if (data.result == 'Los datos no existen') {
@@ -33,6 +39,15 @@ export class LoginFormComponent {
      
       }
       
+    })
+
+  }
+
+  private buildForm() {
+
+    this.loginForm = this.fb.group({
+      email: [, [Validators.required, Validators.email]],
+      password: [, [Validators.required, Validators.minLength(8)]]
     })
 
   }

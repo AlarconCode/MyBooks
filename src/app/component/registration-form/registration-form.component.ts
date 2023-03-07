@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
 import { UserService } from 'src/app/shared/user.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registration-form',
@@ -10,17 +11,37 @@ import { UserService } from 'src/app/shared/user.service';
 export class RegistrationFormComponent {
 
   public user:Usuario
+  public regForm:FormGroup
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private fb:FormBuilder) {
 
-  userRegister(name:string, surname:string, email:string, photo:string, password:string) {
+    this.buildForm()
 
+  }
 
-    this.userService.register(new Usuario(0, name, surname, email, photo, password))
+  userRegister() {
+
+    console.log(this.regForm.value);
+    this.user = this.regForm.value
+    
+
+    this.userService.register(this.user)
     .subscribe((data:any) => {
 
       console.log(data);
       
+    })
+
+  }
+
+  private buildForm() {
+
+    this.regForm = this.fb.group({
+      name: [, Validators.required],
+      surname: [, Validators.required],
+      email: [, [Validators.required, Validators.email]],
+      photo: [, Validators.required],
+      password: [, [Validators.required, Validators.minLength(8)]]
     })
 
   }

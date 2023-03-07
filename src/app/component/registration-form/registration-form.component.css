@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    height: 90vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +13,7 @@ h1 {
 }
 
 form {
-    margin-bottom: 100px;
+    margin: 50px 0;
 }
 
 .form {
@@ -21,49 +21,29 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 50px;
-    padding: 40px;
-    border-radius: 10px;
+    gap: 15px;
+    padding: 30px;
     border: 2px solid var(--dark-green);
     min-width: 300px;
     box-shadow: 0px 0px 50px rgba(7, 37, 11, .2);
 }
 
-.group {
-    position: relative;
-    width: 100%;
-
-}
 
 input {
-    background: none;
+    background: var(--link-light-color);
     border:none;
     color: var(--dark-green);
-    /* display: block; */
     width: 100%;
     padding: 10px 10px 10px 5px;
-    border-bottom: 1px solid var(--dark-green);
+    border-radius: 0;
+    border-bottom: 2px solid var(--link-color);
 }
 
 input:focus {
-    outline: none;
+    border: 0;
+    outline: 0;
+    background-color: var(--link-light-color);
     color: var(--dark-green);
-}
-
-label {
-    position: absolute;
-    bottom: 0;
-    left: 5px;
-    top: 0;
-    transition: 0.5s ease all;
-    pointer-events: none;
-    color: var(--dark-green);
-}
-
-input:focus~label {
-    top: -14px;
-    font-size: 12px;
-    color: var(--link-color);
 }
 
 button {
@@ -73,4 +53,5 @@ button {
     height: 40px;
     color: var(--light-green);
     background-color: var(--link-color);
+    border-radius: 0;
 }

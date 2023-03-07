@@ -43,6 +43,8 @@ export class BooksComponent {
         console.log(res);
         
         Swal.fire(`El libro ${title} ha sido guardado con id ${res.result.insertId}`)
+
+        this.arrayBooks.push(new Book(res.result.insertId,this.userService.getIdUserLogging(),title, author, price, photo))
       }
     )
 
@@ -65,8 +67,13 @@ export class BooksComponent {
       .subscribe(
         (res:any) => {
           console.log(res);
+          let index = id_book--
+          console.log(id_book);
           
+          this.arrayBooks.splice(index, 1 )
           Swal.fire(`El libro con id ${id_book} ha sido eliminado con éxito`)
+
+
         }
         
       )

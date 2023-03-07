@@ -1,29 +1,52 @@
 <div class="container">
-    <form action="" id="form">
+    <form [formGroup]="regForm">
         <div class="form">
             <h1>Registro</h1>
+
             <div class="group">
-                <input type="text" name="" id="name" required #name>
-                <label for="">Nombre</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nombre" formControlName="name"
+                [ngClass]="{'is-invalid': (regForm.get('name').dirty || regForm.get('name').touched) && !regForm.get('name').valid}">
+                <div *ngIf="!regForm.get('name').valid" class="invalid-feedback">
+                    el nombre no es valido
+                </div>
             </div>
+            
             <div class="group">
-                <input type="text" name="" id="surname" required #surname>
-                <label for="">Apellido</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Apellido" formControlName="surname"
+                [ngClass]="{'is-invalid': (regForm.get('surname').dirty || regForm.get('surname').touched) && !regForm.get('surname').valid}">
+                <div *ngIf="!regForm.get('surname').valid" class="invalid-feedback">
+                    el apellido no es valido
+                </div>
             </div>
+           
             <div class="group">
-                <input type="email" name="" id="email" required #email>
-                <label for="">Email</label>
-            </div>
-            <div class="group">
-                <input type="password" name="" id="email" required #password>
-                <label for="">Password</label>
-            </div>
-            <div class="group">
-                <input type="text" name="" id="urlPhoto" #photo>
-                <label for="">Url de imagen</label>
+                <input type="email" class="form-control" id="formGroupExampleInput" placeholder="e-mail" formControlName="email"
+                [ngClass]="{'is-invalid': (regForm.get('email').dirty || regForm.get('email').touched) && !regForm.get('email').valid}">
+                <div *ngIf="!regForm.get('email').valid" class="invalid-feedback">
+                    <div *ngIf="regForm.get('email').errors.required">Es obligatorio introducir email</div>
+                    <div *ngIf="regForm.get('email').errors.email">el email no es válido</div>
+                </div>
             </div>
 
-            <button (click)= userRegister(name.value,surname.value,email.value,photo.value,password.value) type="submit">Registrarse</button>
+            <div class="group">
+                <input type="password" class="form-control" id="formGroupExampleInput" placeholder="password" formControlName="password"
+                [ngClass]="{'is-invalid': (regForm.get('password').dirty || regForm.get('password').touched) && !regForm.get('password').valid}">
+                <div *ngIf="!regForm.get('password').valid" class="invalid-feedback">
+                    <div *ngIf="regForm.get('password').errors.required">Es obligatorio introducir password</div>
+                    <div *ngIf="regForm.get('password').errors.minLength">El password debe 8 caracteres</div>
+                </div>
+            </div>
+
+            <div class="mb-3 group">
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="url imagen" formControlName="photo"
+                [ngClass]="{'is-invalid': (regForm.get('photo').dirty || regForm.get('photo').touched) && !regForm.get('photo').valid}">
+                <div *ngIf="!regForm.get('photo').valid" class="invalid-feedback">
+                    La imagen es obligatoria
+                </div>
+            </div>
+            <!-- <pre>{{regForm.get('password').errors | json}}</pre> -->
+
+            <button (click)="userRegister()" class="btn btn-danger" [disabled]="regForm.invalid">Registrarse</button>
         </div>
     </form>
 </div>
